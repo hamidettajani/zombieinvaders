@@ -1,0 +1,27 @@
+:root {
+    --background-color: #1d170f;
+    --text-color: #659237; 
+  }
+  @font-face {
+    font-family: 'Open-Dyslexic';
+    src: url('OpenDyslexic-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  body {
+    font-family: 'Open-Dyslexic', cursive, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
