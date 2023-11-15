@@ -7,14 +7,51 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <style>
+    #start, #game-over {
+        color: #659237;
+        padding: 20px;
+        position: fixed;
+        top: 35%;
+        left: 47%;
+        margin-top: -100px;
+        margin-left: -100px;
+        height: 200px;
+        width: 250px;
+        text-align: center;
+    }
+    #start a, #game-over a {
+        border: 3px solid #ffffff;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 15px;
+        cursor: pointer;
+        display: block;
+        width: 200px;
+        text-align: center;
+        display: inline-block;
+    }
+    #start a:hover, #game-over a:hover {border-color: #659237; color: #659237;}
 </style>
 <body>
-    <p
+    <p id="poengDisplay"
     style="position: fixed; z-index: 10px; color: #659237; left: 10px; 
     top: 10px; margin: 0;">
     <span>Poeng:</span> <span id="poeng">0</span></p>
 
-    <canvas></canvas>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <div id="start" style="display: block;">
+        <h1>Zombie Invaders</h1>
+        <a href="#" onclick="startGame()">Start</a>
+    </div>
+    <div id="game-over" style="display: none;">
+        <h1>Game over</h1>
+        <a href="neste" onclick="">Neste Spill</a>
+        <a href="" onclick="">Prøv igjen</a>
+        <p>
+            Du fikk <span id="gameoverPoeng"></span> poeng som tilsvarer <span id="vaksiner"></span> vaksiner
+        </p>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

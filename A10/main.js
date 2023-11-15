@@ -14,6 +14,8 @@ class Player {
             y: 0
         }
 
+        this.opacity = 1
+
         const image = new Image()
         image.src = './img/spaceship.png'
         image.onload = () => {
@@ -32,6 +34,8 @@ class Player {
         // c.fillStyle = 'red'
         // c.fillRect(this.position.x, this.position.y, this.width,
         // this.height)
+        
+            c.globalAlpha = this.opacity
             c.drawImage(
                 this.image,
                 this.position.x,
@@ -203,8 +207,27 @@ const keys = {
 
 let score = 0
 let frames = 0
-let randomInterval = Math.floor(Math.random() * 500 + 500)
+let randomInterval = Math.floor(Math.random() * 2 + 150)
 
+
+function startGame() {
+    let startDiv = document.getElementById("start")
+    let gameCanvas = document.getElementById("canvas")
+    let gameOver = document.getElementById("game-over")
+    startDiv.style.display = "none"
+    gameCanvas.style.display = "block"
+    gameOver.style.display = "none"
+    start()
+}
+
+function gameOver() {
+    let startDiv = document.getElementById("start")
+    let gameCanvas = document.getElementById("canvas")
+    let gameOver = document.getElementById("game-over")
+    startDiv.style.display = "none"
+    gameCanvas.style.display = "none"
+    gameOver.style.display = "block"
+}
 
 function animate() {
 
@@ -212,14 +235,27 @@ function animate() {
     c.fillStyle = '#1d170f'
     c.fillRect(0,0, canvas.width, canvas.height)
     player.update()
-    zombieProjectiles.forEach((zombieProjectiles) => {
-        zombieProjectiles.update()
+    zombieProjectiles.forEach((zombieProjectile, index) => {
+        if (zombieProjectile.position.y + zombieProjectile.height >= canvas.height
+        ) {
+            setTimeout(() => {
+                zombieProjectiles.splice(index, 1)
+            }, 0)
+            } else zombieProjectile.update()
+        
+        // projectile treffer player
         if (
-        zombieProjectiles.position.y + zombieProjectiles.
-        height >= player.position.y && zombieProjectiles.position.x +
-        zombieProjectiles.width >= player.position.x &&
-        zombieProjectiles.position.x <= player.position.x + player.width) {
+        zombieProjectile.position.y + zombieProjectile.height
+        >= player.position.y && 
+        zombieProjectile.position.x +
+        zombieProjectile.width >= player.position.x &&
+        zombieProjectile.position.x <= player.position.x + player.width) {
             console.log('you lose')
+
+            setTimeout(() => {
+                player.opacity = 0
+                gameOver()
+            }, 0)
         }
     })
     projectiles.forEach((projectile, index) => {
@@ -241,7 +277,6 @@ function animate() {
             length)].shoot(
             zombieProjectiles
             )
-
         }
 
         grid.zombies.forEach((zombie, i) => {
@@ -265,8 +300,10 @@ function animate() {
                     
                             // fjerner zombies og projectiles
                             if (zombiefound && projectilefound) {
-                                score += 100
+                                score += 1
                                 poeng.innerHTML = score
+                                gameoverPoeng.innerHTML = score
+                                vaksiner.innerHTML = score / 10
 
 
                                 grid.zombies.splice(i, 1)
@@ -303,8 +340,6 @@ function animate() {
 animate()
 
 addEventListener('keydown', ({ key }) => {
-    // if (game.over) return
-
     switch (key) {
         case 'ArrowLeft':
             // console.log('left')
