@@ -11,7 +11,7 @@
         color: #659237;
         padding: 20px;
         position: fixed;
-        top: 35%;
+        top: 30%;
         left: 47%;
         margin-top: -100px;
         margin-left: -100px;
@@ -43,13 +43,17 @@
     <div id="start" style="display: block;">
         <h1>Zombie Invaders</h1>
         <a href="#" onclick="startGame()">Start</a>
+        <p>Få over 50 poeng for å få 3 vaksiner!</p>
     </div>
     <div id="game-over" style="display: none;">
         <h1>Game over</h1>
-        <a href="neste" onclick="">Neste Spill</a>
+
+        <!-- Endre hrefen til riktig fil -->
+        <a href="" onclick="">Neste Spill</a>
+
         <a href="" onclick="">Prøv igjen</a>
-        <p>
-            Du fikk <span id="gameoverPoeng"></span> poeng som tilsvarer <span id="vaksiner"></span> vaksiner
+        <p style="line-height: 1.5;">
+            Du fikk <span id="gameoverPoeng"></span> poeng. <span id="vaksiner"></span>
         </p>
     </div>
     <script src="main.js"></script>

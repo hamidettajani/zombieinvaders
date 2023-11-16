@@ -227,6 +227,10 @@ function gameOver() {
     startDiv.style.display = "none"
     gameCanvas.style.display = "none"
     gameOver.style.display = "block"
+
+    if(score > 50) {
+        vaksiner.innerHTML = "Gratulerer du fikk 3 vaksiner"
+    } else vaksiner.innerHTML = "Prøv igjen, du manglet " + (50 - score) + " poeng for å få 3 vaksiner"
 }
 
 function animate() {
@@ -303,7 +307,7 @@ function animate() {
                                 score += 1
                                 poeng.innerHTML = score
                                 gameoverPoeng.innerHTML = score
-                                vaksiner.innerHTML = score / 10
+                                // vaksiner.innerHTML = score / 10
 
 
                                 grid.zombies.splice(i, 1)
